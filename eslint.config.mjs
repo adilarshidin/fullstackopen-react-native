@@ -1,7 +1,6 @@
 import { defineConfig } from "eslint/config";
 import react from "eslint-plugin-react";
 import reactNative from "eslint-plugin-react-native";
-import babelParser from "@babel/eslint-parser";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
@@ -16,6 +15,7 @@ const compat = new FlatCompat({
 });
 
 export default defineConfig([{
+    files: ["./src/**/*.js", "./src/**/*.jsx", "./App.js"],
     extends: compat.extends("eslint:recommended", "plugin:react/recommended"),
 
     plugins: {
@@ -38,5 +38,9 @@ export default defineConfig([{
     rules: {
         "react/prop-types": "off",
         "react/react-in-jsx-scope": "off",
+        "semi": ["error"],
+        eqeqeq: "off",
+        "no-unused-vars": "error",
+        "prefer-const": ["error", { ignoreReadBeforeAssign: true }],
     },
 }]);
