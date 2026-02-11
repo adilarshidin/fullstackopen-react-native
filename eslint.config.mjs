@@ -25,6 +25,7 @@ export default defineConfig([{
 
     languageOptions: {
         globals: {
+            ...js.environments.browser.globals,
             ...reactNative.environments["react-native"]["react-native"],
         }
     },
