@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import font from "../theme";
 import useSignIn from "../hooks/useSignIn";
+import { useNavigate } from "react-router-native";
+import { useEffect } from "react";
 
 const initialValues = {
   username: "",
@@ -50,18 +52,19 @@ const styles = StyleSheet.create({
 
 const SignIn = () => {
   const [signIn, result] = useSignIn();
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (!result.loading && result.data && result.data.authenticate.accessToken) {
+      navigate("/");
+    }
+  })
 
   const onSubmit = (values) => {
     signIn(values.username, values.password);
   };
 
-  if (result.called) {
-    if (result.error) {
-      console.log(result.error);
-    } else if (!result.loading) {
-      console.log(result.data.authenticate.accessToken);
-    }
-  }
+  if (result.called && result.error) console.log(result.error);
 
   const formik = useFormik({
     initialValues,
