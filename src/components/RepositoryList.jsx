@@ -2,6 +2,8 @@ import { FlatList, View, StyleSheet } from 'react-native';
 import { useQuery } from '@apollo/client/react';
 import RepositoryItem from './RepositoryItem';
 import { GET_REPOSITORIES } from '../graphql/queries';
+import { useNavigate } from 'react-router-native';
+import { useEffect } from 'react';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,7 +16,15 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryList = () => {
+const RepositoryList = ({ userData }) => {
+  let navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userData.me) {
+      navigate("/sign-in");
+    }
+  }, [userData.me]);
+
   const { data, error, loading } = useQuery(GET_REPOSITORIES, {
     fetchPolicy: "cache-and-network"
   });

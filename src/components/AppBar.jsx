@@ -1,5 +1,8 @@
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { Link } from 'react-router-native';
+import { Pressable } from 'react-native';
+import useAuthStorage from '../hooks/useAuthStorage';
+import { useApolloClient } from '@apollo/client/react';
 
 const styles = StyleSheet.create({
   container: {
@@ -22,7 +25,21 @@ const styles = StyleSheet.create({
   }
 });
 
-const AppBar = () => {
+const AppBar = ({ data }) => {
+  const authStorage = useAuthStorage();
+  const apolloClient = useApolloClient();
+
+  let hasUserData = false;
+  if (data.me) {
+    const userData = data.me;
+    if (userData.id) hasUserData = true;
+  }
+
+  const handleSignOut = () => {
+    authStorage.removeAccessToken();
+    apolloClient.resetStore();
+  }
+
   return (
     <View style={styles.container}>
       <ScrollView
@@ -31,12 +48,21 @@ const AppBar = () => {
         contentContainerStyle={styles.scrollContent}
         showsHorizontalScrollIndicator={false}
       >
-        <Link style={styles.item} to="/">
-          <Text style={styles.text}>Repositories</Text>
-        </Link>
-        <Link style={styles.item} to="/sign-in">
-          <Text style={styles.text}>Sign In</Text>
-        </Link>
+        {
+          hasUserData ? (
+            <>
+              <Link style={styles.item} to="/">
+                <Text style={styles.text}>Repositories</Text>
+              </Link>
+              <Pressable style={styles.item} onPress={handleSignOut}>
+                <Text style={styles.text}>Sign Out</Text>
+              </Pressable>
+            </>
+          ) :
+          <Link style={styles.item} to="/sign-in">
+            <Text style={ styles.text}>Sign In</Text>
+          </Link>
+        }
       </ScrollView>
     </View>
   );

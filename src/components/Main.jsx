@@ -1,9 +1,11 @@
 import Constants from 'expo-constants';
 import { Text, StyleSheet, View } from 'react-native';
 import { Route, Routes, Navigate } from 'react-router-native';
+import { useQuery } from '@apollo/client/react';
 import RepositoryList from './RepositoryList';
 import SignIn from "./SignIn";
 import AppBar from './AppBar';
+import { ME } from '../graphql/queries';
 
 const styles = StyleSheet.create({
   container: {
@@ -18,14 +20,20 @@ const styles = StyleSheet.create({
 });
 
 const Main = () => {
+  const { data, error, loading } = useQuery(ME, {
+    fetchPolicy: "cache-and-network"
+  });
+
+  if (loading) return null;
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Rate Repository Application</Text>
-      <AppBar />
+      <AppBar data={data} />
       <Routes>
-        <Route path="/" element={<RepositoryList />} />
-        <Route path="/sign-in" element={<SignIn />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="/" element={<RepositoryList userData={data} />} />
+        <Route path="/sign-in" element={<SignIn userData={data} />} />
+        <Route path="*" element={<Navigate to="/sign-in" replace />} />
       </Routes>
     </View>
   );

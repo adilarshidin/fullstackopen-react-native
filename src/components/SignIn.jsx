@@ -50,15 +50,15 @@ const styles = StyleSheet.create({
   }
 })
 
-const SignIn = () => {
+const SignIn = ({ userData }) => {
   const [signIn, result] = useSignIn();
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (!result.loading && result.data && result.data.authenticate.accessToken) {
+    if (userData.me) {
       navigate("/");
     }
-  })
+  }, [userData.me])
 
   const onSubmit = (values) => {
     signIn(values.username, values.password);
