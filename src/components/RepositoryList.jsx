@@ -18,7 +18,7 @@ const RepositoryList = ({ userData }) => {
   });
 
   if (loading) return null;
-  console.log(data)
+
   return <RepositoryListContainer repositories={data} />;
 };
 
