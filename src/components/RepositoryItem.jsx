@@ -65,7 +65,7 @@ const formatThousands = (value) => {
 
 const RepositoryItem = ({ item }) => {
   return (
-    <View style={styles.container}>
+    <View testID="repositoryItem" style={styles.container}>
       <View style={styles.top}>
         <View>
           <Image style={styles.image} source={{
