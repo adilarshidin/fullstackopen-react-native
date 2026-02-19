@@ -37,6 +37,20 @@ const GET_REPOSITORY = gql`
       reviewCount
       stargazersCount
       watchersCount
+      reviews {
+        edges {
+          node {
+            createdAt
+            id
+            rating
+            repositoryId
+            text
+            user {
+              username
+            }
+          }
+        }
+      }
     }
   }
 `
