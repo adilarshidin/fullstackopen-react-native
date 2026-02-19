@@ -8,4 +8,19 @@ const AUTHENTICATE = gql`
   }
 `;
 
-export { AUTHENTICATE };
+const ADD_REVIEW = gql`
+  mutation ($repositoryName: String!, $ownerName: String!, $rating: Int!, $text: String) {
+    createReview (review: {
+      repositoryName: $repositoryName
+      ownerName: $ownerName
+      rating: $rating
+      text: $text
+    }) {
+      createdAt
+      id
+      repositoryId
+    }
+  }
+`;
+
+export { AUTHENTICATE, ADD_REVIEW };

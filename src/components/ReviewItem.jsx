@@ -39,7 +39,6 @@ const styles = StyleSheet.create({
 })
 
 const ReviewItem = ({ review }) => {
-  console.log(review)
   const date = new Date(review.createdAt);
   const formattedDate = `${date.toLocaleString()}`;
 

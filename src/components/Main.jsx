@@ -7,6 +7,7 @@ import SignIn from "./SignIn";
 import AppBar from './AppBar';
 import { ME } from '../graphql/queries';
 import RepositoryView from './RepositoryView';
+import AddReview from "./AddReview";
 
 const styles = StyleSheet.create({
   container: {
@@ -33,8 +34,9 @@ const Main = () => {
       <AppBar data={data} />
       <Routes>
         <Route path="/" element={<RepositoryList userData={data} />} />
-        <Route path="/sign-in" element={<SignIn userData={data} />} />
         <Route path="/:id" element={<RepositoryView />} />
+        <Route path="/sign-in" element={<SignIn userData={data} />} />
+        <Route path="/review" element={<AddReview />} />
         <Route path="*" element={<Navigate to="/sign-in" replace />} />
       </Routes>
     </View>
