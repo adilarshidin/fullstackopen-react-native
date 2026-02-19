@@ -6,6 +6,7 @@ import RepositoryList from './RepositoryList';
 import SignIn from "./SignIn";
 import AppBar from './AppBar';
 import { ME } from '../graphql/queries';
+import RepositoryView from './RepositoryView';
 
 const styles = StyleSheet.create({
   container: {
@@ -33,6 +34,7 @@ const Main = () => {
       <Routes>
         <Route path="/" element={<RepositoryList userData={data} />} />
         <Route path="/sign-in" element={<SignIn userData={data} />} />
+        <Route path="/:id" element={<RepositoryView />} />
         <Route path="*" element={<Navigate to="/sign-in" replace />} />
       </Routes>
     </View>

@@ -19,6 +19,28 @@ const GET_REPOSITORIES = gql`
   }
 `;
 
+const GET_REPOSITORY = gql`
+  query ($id: ID!) {
+    repository (id: $id) {
+      id
+      fullName
+      url
+      forksCount
+      description
+      createdAt
+      language
+      name
+      openIssuesCount
+      ownerAvatarUrl
+      ownerName
+      ratingAverage
+      reviewCount
+      stargazersCount
+      watchersCount
+    }
+  }
+`
+
 const ME = gql`
   query {
     me {
@@ -28,4 +50,4 @@ const ME = gql`
   }
 `;
 
-export { GET_REPOSITORIES, ME };
+export { GET_REPOSITORIES, GET_REPOSITORY, ME };
