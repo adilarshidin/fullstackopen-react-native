@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from 'react-router-native';
 import { useQuery } from '@apollo/client/react';
 import RepositoryList from './RepositoryList';
 import SignIn from "./SignIn";
+import SignUp from './SignUp';
 import AppBar from './AppBar';
 import { ME } from '../graphql/queries';
 import RepositoryView from './RepositoryView';
@@ -36,6 +37,7 @@ const Main = () => {
         <Route path="/" element={<RepositoryList userData={data} />} />
         <Route path="/:id" element={<RepositoryView />} />
         <Route path="/sign-in" element={<SignIn userData={data} />} />
+        <Route path="/sign-up" element={<SignUp userData={data} />} />
         <Route path="/review" element={<AddReview />} />
         <Route path="*" element={<Navigate to="/sign-in" replace />} />
       </Routes>

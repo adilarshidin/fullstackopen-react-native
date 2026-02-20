@@ -8,6 +8,15 @@ const AUTHENTICATE = gql`
   }
 `;
 
+const SIGN_UP = gql`
+  mutation ($username: String!, $password: String!) {
+    createUser (user: { username: $username, password: $password }) {
+      id
+      username
+    }
+  }
+`;
+
 const ADD_REVIEW = gql`
   mutation ($repositoryName: String!, $ownerName: String!, $rating: Int!, $text: String) {
     createReview (review: {
@@ -23,4 +32,4 @@ const ADD_REVIEW = gql`
   }
 `;
 
-export { AUTHENTICATE, ADD_REVIEW };
+export { AUTHENTICATE, SIGN_UP, ADD_REVIEW };
