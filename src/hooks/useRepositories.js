@@ -6,7 +6,8 @@ const useRepositories = (variables) => {
     nextFetchPolicy: "cache-and-network",
     variables: {
       orderBy: variables.orderBy,
-      orderDirection: variables.orderDirection
+      orderDirection: variables.orderDirection,
+      searchKeyword: variables.searchKeyword
     }
   })
   return result;
