@@ -1,10 +1,20 @@
-import { useQuery } from '@apollo/client/react';
-import { GET_REPOSITORIES } from '../graphql/queries';
 import { useNavigate } from 'react-router-native';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import useRepositories from "../hooks/useRepositories";
 import RepositoryListContainer from "./RepositoryListContainer";
 
+const mapFilterVariables = (filter) => {
+  switch (filter) {
+    case "recent": return { orderBy: "CREATED_AT", orderDirection: "DESC" }
+    case "highest": return { orderBy: "RATING_AVERAGE", orderDirection: "DESC" }
+    case "lowest": return { orderBy: "RATING_AVERAGE", orderDirection: "ASC" }
+  }
+}
+
 const RepositoryList = ({ userData }) => {
+  const [filter, setFilter] = useState("recent");
+  const filterVariables = mapFilterVariables(filter);
+  const { data, error, loading } = useRepositories(filterVariables);
   let navigate = useNavigate();
 
   useEffect(() => {
@@ -13,13 +23,7 @@ const RepositoryList = ({ userData }) => {
     }
   }, [userData.me]);
 
-  const { data, error, loading } = useQuery(GET_REPOSITORIES, {
-    fetchPolicy: "cache-and-network"
-  });
-
-  if (loading) return null;
-
-  return <RepositoryListContainer repositories={data} />;
+  return <RepositoryListContainer repositories={data} filter={filter} setFilter={setFilter} />;
 };
 
 export default RepositoryList;
