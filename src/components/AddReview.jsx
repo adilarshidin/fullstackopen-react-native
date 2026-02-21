@@ -29,7 +29,6 @@ const ReviewForm = () => {
       Number(values.rating),
       values.text
     );
-    console.log(addReviewResult);
     if (addReviewResult) navigate(`/${addReviewResult}`);
   };
 
