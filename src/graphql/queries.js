@@ -4,12 +4,16 @@ const GET_REPOSITORIES = gql`
   query (
     $orderBy: AllRepositoriesOrderBy,
     $orderDirection: OrderDirection,
-    $searchKeyword: String
+    $searchKeyword: String,
+    $first: Int,
+    $after: String
   ) {
     repositories (
       orderBy: $orderBy,
       orderDirection: $orderDirection,
-      searchKeyword: $searchKeyword
+      searchKeyword: $searchKeyword,
+      first: $first,
+      after: $after
     ) {
       edges {
         node {
@@ -23,12 +27,20 @@ const GET_REPOSITORIES = gql`
           stargazersCount
         }
       }
+      pageInfo {
+        hasNextPage
+        endCursor
+      }
     }
   }
 `;
 
 const GET_REPOSITORY = gql`
-  query ($id: ID!) {
+  query (
+    $id: ID!
+    $first: Int
+    $after: String
+  ) {
     repository (id: $id) {
       id
       fullName
@@ -45,7 +57,7 @@ const GET_REPOSITORY = gql`
       reviewCount
       stargazersCount
       watchersCount
-      reviews {
+      reviews (first: $first, after: $after) {
         edges {
           node {
             createdAt
@@ -57,6 +69,10 @@ const GET_REPOSITORY = gql`
               username
             }
           }
+        }
+        pageInfo {
+          hasNextPage
+          endCursor
         }
       }
     }

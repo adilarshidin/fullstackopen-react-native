@@ -13,9 +13,14 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-const RepositoryListContainer = ({ repositories, filter, setFilter }) => {
+const RepositoryListContainer = ({
+  repositories,
+  filter,
+  setFilter,
+  onEndReached
+}) => {
   const nodes = repositories
-    ? repositories.repositories.edges.map((edge) => edge.node)
+    ? repositories.edges.map((edge) => edge.node)
     : [];
 
   return (
@@ -25,7 +30,9 @@ const RepositoryListContainer = ({ repositories, filter, setFilter }) => {
       ItemSeparatorComponent={ItemSeparator}
       renderItem={({item}) => <RepositoryItem item={item} />}
       keyExtractor={item => item.id}
-      ListHeaderComponent={<RepositoryListFilter filter={filter} setFilter={setFilter} />}
+      ListHeaderComponent={<RepositoryListFilter filter={filter} setFilter={setFilter}/>}
+      onEndReached={onEndReached}
+      onEndReachedThreshold={0.5}
     />
   );
 };

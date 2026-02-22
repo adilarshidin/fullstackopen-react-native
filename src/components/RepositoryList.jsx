@@ -53,7 +53,12 @@ const RepositoryList = ({ userData }) => {
   if (formik.values.searchKeyword) {
     filterVariables["searchKeyword"] = debouncedSearchKeyword;
   }
-  const { data, error, loading } = useRepositories(filterVariables);
+  filterVariables["first"] = 6;
+  const { repositories, fetchMore } = useRepositories(filterVariables);
+
+  const onEndReached = () => {
+    fetchMore();
+  };
 
   return (
     <>
@@ -63,7 +68,12 @@ const RepositoryList = ({ userData }) => {
         placeholder="Search keyword"
         onChangeText={formik.handleChange("searchKeyword")}
       />
-      <RepositoryListContainer repositories={data} filter={filter} setFilter={setFilter} />
+      <RepositoryListContainer
+        repositories={repositories}
+        filter={filter}
+        setFilter={setFilter}
+        onEndReached={onEndReached}
+      />
     </>
   )
 };
