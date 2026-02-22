@@ -32,4 +32,10 @@ const ADD_REVIEW = gql`
   }
 `;
 
-export { AUTHENTICATE, SIGN_UP, ADD_REVIEW };
+const DELETE_REVIEW = gql`
+  mutation ($deleteReviewId: ID!) {
+    deleteReview (id: $deleteReviewId)
+  }
+`;
+
+export { AUTHENTICATE, SIGN_UP, ADD_REVIEW, DELETE_REVIEW };

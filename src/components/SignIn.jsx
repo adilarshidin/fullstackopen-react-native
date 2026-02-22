@@ -24,10 +24,10 @@ const SignIn = ({ userData }) => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    if (userData.me) {
+    if (userData && userData.me) {
       navigate("/");
     }
-  }, [userData.me])
+  }, [userData])
 
   const onSubmit = (values) => {
     signIn(values.username, values.password);

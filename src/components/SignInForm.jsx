@@ -5,28 +5,28 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     alignItems: "center",
-    padding: "4%",
-    width: "50vw",
-    gap: "20px"
+    padding: 12,
+    width: "50%",
+    //gap: "20px"
   },
   input: {
     backgroundColor: "lightgrey",
-    padding: "3%",
-    borderRadius: "15px",
+    padding: 8,
+    borderRadius: 15,
     border: "solid",
     fontFamily: font()
   },
   inputError: {
     backgroundColor: "lightgrey",
-    padding: "3%",
-    borderRadius: "15px",
+    padding: 8,
+    borderRadius: 15,
     border: "solid red",
     fontFamily: font()
   },
   button: {
-    padding: "3%",
+    padding: 8,
     backgroundColor: "lightblue",
-    borderRadius: "15px",
+    borderRadius: 15,
     fontFamily: font()
   }
 })

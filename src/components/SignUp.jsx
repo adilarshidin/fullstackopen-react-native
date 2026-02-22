@@ -22,10 +22,10 @@ const SignUp = ({ userData }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (userData.me) {
+    if (userData && userData.me) {
       navigate("/");
     }
-  }, [userData.me])
+  }, [userData])
 
   const onSubmit = async (values) => {
     const result = await signUp(values.username, values.password);

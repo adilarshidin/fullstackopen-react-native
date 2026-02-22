@@ -75,6 +75,7 @@ const GET_CURRENT_USER = gql`
             id
             rating
             text
+            repositoryId
             user {
               username
             }

@@ -6,9 +6,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: "white",
-    margin: "2%",
-    padding: "2%",
-    gap: "20px"
+    margin: 6,
+    padding: 6,
+    //gap: "20px"
   },
   ratingContainer: {
     display: "flex",
@@ -18,17 +18,17 @@ const styles = StyleSheet.create({
   rating: {
     display: "flex",
     alignItems: "center",
-    padding: "25%",
-    borderRadius: "25px",
+    padding: 25,
+    borderRadius: 25,
     borderStyle: "solid",
-    borderWidth: "2px",
+    borderWidth: 2,
     borderColor: "blue",
     color: "blue",
   },
   right: {
     display: "flex",
     flex: "9",
-    gap: "5px"
+    //gap: "5px"
   },
   username: {
     fontWeight: "bold"

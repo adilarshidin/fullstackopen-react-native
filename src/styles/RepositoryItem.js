@@ -13,16 +13,16 @@ const styles = StyleSheet.create({
   topLeft: {
     display: "flex",
     flexDirection: "row",
-    padding: "2%"
+    padding: 6
   },
   topText: {
-    marginLeft: "2%",
-    gap: "5%"
+    marginLeft: 6,
+    //gap: "5%"
   },
   image: {
     width: 66,
     height: 58,
-    borderRadius: "15px"
+    borderRadius: 15
   },
   textName: {
     fontWeight: "bold"
@@ -34,10 +34,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    borderRadius: "10px",
+    borderRadius: 10,
     backgroundColor: "#0366d6",
-    margin: "1%",
-    padding: "3%",
+    margin: 4,
+    padding: 8,
     alignSelf: "flex-start"
   },
   textLanguage: {
@@ -63,11 +63,11 @@ const styles = StyleSheet.create({
     dispay: "flex",
     justifyContent: "center",
     alignItems: "center",
-    margin: "2%",
-    padding: "2%",
-    borderRadius: "10px",
+    margin: 6,
+    padding: 6,
+    borderRadius: 10,
     backgroundColor: "darkblue",
-    height: "30px"
+    height: 30
   },
   textButton: {
     color: "white"

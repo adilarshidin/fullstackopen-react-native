@@ -9,11 +9,11 @@ import RepositoryListContainer from "./RepositoryListContainer";
 
 const styles = StyleSheet.create({
   search: {
-    padding: "2%",
-    margin: "1%",
+    padding: 6,
+    margin: 4,
     border: "solid",
     backgroundColor: "white",
-    width: "70vw"
+    width: "70%"
   }
 });
 
@@ -45,10 +45,10 @@ const RepositoryList = ({ userData }) => {
   const [debouncedSearchKeyword] = useDebounce(formik.values.searchKeyword, 500)
 
   useEffect(() => {
-    if (!userData.me) {
+    if (userData && !userData.me) {
       navigate("/sign-in");
     }
-  }, [userData.me]);
+  }, [userData]);
 
   if (formik.values.searchKeyword) {
     filterVariables["searchKeyword"] = debouncedSearchKeyword;

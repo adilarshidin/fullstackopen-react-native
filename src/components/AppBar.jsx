@@ -11,14 +11,14 @@ const styles = StyleSheet.create({
   },
   scroll: {
     display: "flex",
-    padding: "2%"
+    padding: 4
   },
   scrollContent: {
     flexDirection: "row",
-    gap: "50%"
+    //gap: "50%"
   },
   item: {
-    padding: "2%",
+    padding: 6,
   },
   text: {
     color: "white"
@@ -30,7 +30,7 @@ const AppBar = ({ data }) => {
   const apolloClient = useApolloClient();
 
   let hasUserData = false;
-  if (data.me) {
+  if (data && data.me) {
     const userData = data.me;
     if (userData.id) hasUserData = true;
   }

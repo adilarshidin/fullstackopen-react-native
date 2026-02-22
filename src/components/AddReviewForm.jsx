@@ -5,27 +5,27 @@ const styles = StyleSheet.create({
   container: {
     display: "flex",
     alignItems: "center",
-    padding: "4%",
+    padding: 12,
     gap: "20px"
   },
   input: {
     backgroundColor: "lightgrey",
-    padding: "3%",
-    width: "80vw",
+    padding: 8,
+    width: "80%",
     border: "solid",
     fontFamily: font()
   },
   inputError: {
     backgroundColor: "lightgrey",
-    padding: "3%",
-    width: "80vw",
+    padding: 8,
+    width: "80%",
     border: "solid red",
     fontFamily: font()
   },
   button: {
-    padding: "3%",
+    padding: 8,
     backgroundColor: "lightblue",
-    borderRadius: "15px",
+    borderRadius: 15,
     fontFamily: font()
   }
 });
